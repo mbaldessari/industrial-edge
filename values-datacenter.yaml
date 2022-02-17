@@ -50,7 +50,7 @@ clusterGroup:
     channel: stable
     csv: amqstreams.v2.0.1-0
 
-  - name: amq-broker
+  - name: amq-broker-rhel8
     namespace: manuela-tst-all
     channel: current
     csv: amq-broker-operator.v7.8.4-opr-1
