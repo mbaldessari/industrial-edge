@@ -56,12 +56,18 @@ clusterGroup:
     csv: amq-broker-operator.v7.8.4-opr-3
 
   - name: red-hat-camel-k
+<<<<<<< HEAD
     namespace: manuela-data-lake-central-s3-store
     channel: 1.6.x
     csv: red-hat-camel-k-operator.v1.6.3
 
   - name: red-hat-camel-k
     namespace: manuela-tst-all
+=======
+    namespaces: 
+      - manuela-data-lake-central-s3-store
+      - manuela-tst-all
+>>>>>>> 20ce6ac6 (Adding new channels for amq and camel-k)
     channel: 1.6.x
     csv: red-hat-camel-k-operator.v1.6.3
 
