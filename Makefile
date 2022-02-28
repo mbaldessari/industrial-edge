@@ -26,6 +26,7 @@ ifeq ($(BOOTSTRAP),1)
 	helm install $(NAME)-secrets charts/secrets/pipeline-setup $(HELM_OPTS)
 endif
 
+<<<<<<< HEAD
 install: pipeline-setup deploy
 ifeq ($(BOOTSTRAP),1)
 	make vault-init
@@ -33,6 +34,22 @@ ifeq ($(BOOTSTRAP),1)
 	make argosecret
 	make sleep-seed
 endif
+
+validate-origin:
+	git ls-remote $(TARGET_REPO)
+
+init:
+	git submodule update --init --recursive
+
+deploy: validate-origin
+	helm install $(NAME) common/install/ $(HELM_OPTS)
+
+upgrade: validate-origin
+	helm upgrade $(NAME) common/install/ $(HELM_OPTS)
+
+uninstall:
+	helm uninstall $(NAME)
+>>>>>>> 852fd51c (Add a helmlint target that runs helm lint over the charts)
 
 vault-init:
 	make -f common/Makefile vault-init
