@@ -35,10 +35,6 @@ ifeq ($(BOOTSTRAP),1)
 #	make sleep-seed
 endif
 
-vault-init:
-	make -f common/Makefile vault-init
-	echo "Please load your secrets into the vault now"
-
 upgrade: load-secrets
 	make -f common/Makefile upgrade
 
