@@ -16,10 +16,24 @@
   include_tasks: install-charts.yaml
 
 - name: "{{ role_name }}: Initialize Vault"
-  include_tasks: vault-init.yaml
-  
+  include_role:
+    name: vault_utils
+    tasks_from: vault_init.yaml
+
+- name: "{{ role_name }}: Unseal Vault"
+  include_role:
+    name: vault_utils
+    tasks_from: vault_unseal.yaml
+
+- name: "{{ role_name }}: Secrets Init Vault"
+  include_role:
+    name: vault_utils
+    tasks_from: vault_secrets_init.yaml
+
 - name: "{{ role_name }}: Load Secrets to Vault"
-  include_tasks: ansible-push-vault-secrets.yaml
+  include_role:
+    name: vault_utils
+    tasks_from: push_secrets.yaml
 
 - name: "{{ role_name }}: Retrieve ArgoCD Secrets"
   include_tasks: argo-secret.yaml
