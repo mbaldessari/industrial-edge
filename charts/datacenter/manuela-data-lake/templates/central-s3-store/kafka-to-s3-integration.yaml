@@ -62,6 +62,7 @@ spec:
             	String s3params = key
                 + secret
                 + region;
+                LOGGER.info("BANDINI: " + s3params)
 
                 from("kafka:{{ .Values.kafka.broker.topic.vibration }}?brokers={{ .Values.kafka.broker.uri }}")
                     .convertBodyTo(String.class)
@@ -90,6 +91,7 @@ spec:
             	String s3params = key
                    + secret
                    + region;
+                LOGGER.info("BANDINI: " + s3params)
                 from("kafka:{{ .Values.kafka.broker.topic.temperature }}?brokers={{ .Values.kafka.broker.uri }}")
                     .convertBodyTo(String.class)
                     .aggregate(simple("true"), new GroupedBodyAggregationStrategy()).completionSize(s3_message_aggregation_count)
