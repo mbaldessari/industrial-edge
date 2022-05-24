@@ -23,8 +23,8 @@ global:
 
   s3:
     bucket:
-      name: manuela-data-lake-1
-      region: us-west-1
+      name: bandini-industrial-edge
+      region: us-east-2
       message:
         aggregation:
           count: 50
