@@ -10,24 +10,24 @@ global:
     installPlanApproval: Automatic
 
   imageregistry:
-    account: PLAINTEXT
+    account: rhn_support_mbaldess
     hostname: quay.io
     type: quay
 
   git:
     hostname: github.com
-    account: PLAINTEXT
-    username: PLAINTEXT
+    account: mbaldessari
+    username: mbaldessari
     email: SOMEWHERE@EXAMPLE.COM
     dev_revision: main
 
   s3:
     bucket:
-      name: S3BUCKETNAME
-      region: AWSREGION
+      name: bandini-industrial-edge
+      region: us-east-2
       message:
         aggregation:
-          count: 100
+          count: 50
       custom:
         endpoint:
           enabled: false
