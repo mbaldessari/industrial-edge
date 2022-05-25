@@ -89,7 +89,7 @@ spec:
                 String secret="&secretKey=" + s3_secretKey;
                 String region = "&region=" + s3_region;
             	String s3params = key
-                   + secret;
+                   + secret
                    + region;
                 LOGGER.info("BANDINI: " + s3params);
                 from("kafka:{{ .Values.kafka.broker.topic.temperature }}?brokers={{ .Values.kafka.broker.uri }}")
