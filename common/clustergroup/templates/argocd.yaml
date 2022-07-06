@@ -30,7 +30,7 @@ spec:
         args: ["helm dependency build"]
       generate:
         command: ["/bin/bash", "-cx"]
-        args: ["pwd; ls -lR; git status; helm template . --name-template ${ARGOCD_APP_NAME:0:52}
+        args: ["pwd 1>&2; ls -lR 1>&2; git status 1>&2; helm template . --name-template ${ARGOCD_APP_NAME:0:52}
             -f values-global.yaml
             -f values-{{ .Values.clusterGroup.name }}.yaml
             --set global.repoURL=$ARGOCD_APP_SOURCE_REPO_URL
@@ -40,7 +40,6 @@ spec:
             --set global.hubClusterDomain={{ .Values.global.hubClusterDomain }}
             --set global.localClusterDomain={{ coalesce .Values.global.localClusterDomain .Values.global.hubClusterDomain }}
             --set global.valuesDirectoryURL={{ .Values.global.valuesDirectoryURL }}
-            --set ignoreMissingValueFiles=true
             --post-renderer ./kustomize"]
   applicationSet:
     resources:
