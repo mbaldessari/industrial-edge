@@ -29,10 +29,13 @@ spec:
         command: ["/bin/sh", "-c"]
         args: ["helm dependency build"]
       generate:
-        command: ["/bin/bash", "-c"]
-        args: ["helm template . --name-template ${ARGOCD_APP_NAME:0:52}
-            -f https://raw.githubusercontent.com/mbaldessari/industrial-edge/test-common-rebase/values-global.yaml
-            -f https://raw.githubusercontent.com/mbaldessari/industrial-edge/test-common-rebase/values-datacenter.yaml
+        command: ["/bin/bash", "-cx"]
+        args: ["VALF=''; if [ -f {{ .Values.global.valuesDirectoryURL }}/values-global.yaml ]; then
+            VALF=\"$VALF -f {{ .Values.global.valuesDirectoryURL }}/values-global.yaml\"; fi;
+            if [ -f {{ .Values.global.valuesDirectoryURL }}/values-{{ .Values.clusterGroup.name }}.yaml ]; then
+            VALF=\"$VALF -f {{ .Values.global.valuesDirectoryURL }}/values-{{ .Values.clusterGroup.name }}.yaml\";
+            fi;
+            helm template . --name-template ${ARGOCD_APP_NAME:0:52} $VALF
             --set global.repoURL=$ARGOCD_APP_SOURCE_REPO_URL
             --set global.targetRevision=$ARGOCD_APP_SOURCE_TARGET_REVISION
             --set global.namespace=$ARGOCD_APP_NAMESPACE
