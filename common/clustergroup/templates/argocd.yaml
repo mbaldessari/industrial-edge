@@ -30,7 +30,7 @@ spec:
         args: ["helm dependency build"]
       generate:
         command: ["/bin/bash", "-cx"]
-        args: ["helm template . --name-template ${ARGOCD_APP_NAME:0:52}
+        args: ["pwd; ls -lR; git status; helm template . --name-template ${ARGOCD_APP_NAME:0:52}
             -f values-global.yaml
             -f values-{{ .Values.clusterGroup.name }}.yaml
             --set global.repoURL=$ARGOCD_APP_SOURCE_REPO_URL
