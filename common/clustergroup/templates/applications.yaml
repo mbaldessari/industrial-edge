@@ -24,10 +24,10 @@ spec:
     plugin: {{ .plugin | toPrettyJson }}
     {{- else if not .kustomize }}
     helm:
-      ignoreMissingValueFiles: true
+      #ignoreMissingValueFiles: true
       valueFiles:
-      - "{{ coalesce .valuesDirectoryURL $.Values.global.valuesDirectoryURL }}/values-global.yaml"
-      - "{{ coalesce .valuesDirectoryURL $.Values.global.valuesDirectoryURL }}/values-{{ $.Values.clusterGroup.name }}.yaml"
+      - "/values-global.yaml"
+      - "/values-{{ $.Values.clusterGroup.name }}.yaml"
       # Watch the progress of https://issues.redhat.com/browse/GITOPS-891 and update accordingly
       parameters:
         - name: global.repoURL
