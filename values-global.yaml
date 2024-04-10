@@ -10,25 +10,25 @@ global:
     installPlanApproval: Automatic
 
   imageregistry:
-    account: PLAINTEXT
+    account: rhn_support_mbaldess
     hostname: quay.io
     type: quay
 
   git:
     hostname: github.com
-    account: PLAINTEXT
+    account: mbaldessari
     #username: PLAINTEXT
     email: SOMEWHERE@EXAMPLE.COM
     dev_revision: main
 
   s3:
     bucket:
-      name: BUCKETNAME
-      region: AWSREGION
+      name: manuela-data-lake
+      region: us-west-1
       message:
         aggregation:
           count: 50
       custom:
         endpoint: 
-          url: https://my.custom.endpoint
+          #url: https://my.custom.endpoint
           enabled: false
