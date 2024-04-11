@@ -50,6 +50,7 @@ clusterGroup:
     odh:
       name: opendatahub-operator
       source: community-operators
+      channel: stable
 
   projects:
   - datacenter
