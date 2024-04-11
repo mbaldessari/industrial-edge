@@ -1,0 +1,11 @@
+apiVersion: dscinitialization.opendatahub.io/v1
+kind: DSCInitialization
+metadata:
+  name: datacenter-dsci
+spec:
+  applicationsNamespace: opendatahub
+  monitoring:
+    namespace: opendatahub
+    managementState: Managed
+  serviceMesh:
+    managementState: Removed
