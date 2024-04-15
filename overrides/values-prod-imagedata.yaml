@@ -2,6 +2,7 @@
 # prod_version and test_version keys with built values will be edited when the pipelines run
 ---
 iot_consumer:
-  tag: 0.3.2-1
+  tag: 0.3.2-2
   built_tags:
     - 0.3.2-1
+    - 0.3.2-2
