@@ -3,7 +3,7 @@ main:
   multiSourceConfig:
     enabled: true
   git:
-    repoUpstreamURL: https://github.com/mamurak/industrial-edge
+    repoUpstreamURL: https://github.com/mbaldessari/industrial-edge
 
 global:
   pattern: industrial-edge
