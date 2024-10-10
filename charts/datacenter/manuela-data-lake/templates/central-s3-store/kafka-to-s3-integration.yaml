@@ -94,11 +94,13 @@ spec:
                 String key = "accessKey=RAW(" + s3_accessKey + ")";
                 String secret = "&secretKey=RAW(" + s3_secretKey + ")";
                 String region = "&region=" + s3_region;
+                String customendpoint = "&overrideEndpoint=" + s3_custom_endpoint_enabled;
                 String endpoint = "&uriEndpointOverride=" + s3_custom_endpoint_url;
-                String s3params = key
-                   + endpoint
-                   + secret
-                   + region;
+            	String s3params = key
+                + customendpoint
+                + endpoint
+                + secret
+                + region;
                 from("kafka:{{ .Values.kafka.broker.topic.temperature }}?brokers={{ .Values.kafka.broker.uri }}")
                     .convertBodyTo(String.class)
                     .aggregate(simple("true"), new GroupedBodyAggregationStrategy()).completionSize(s3_message_aggregation_count)
@@ -116,7 +118,7 @@ spec:
                         })
                     // .to(\"file:/var/tmp/\");
                     .setHeader(AWS2S3Constants.KEY, simple("manuela-prod-temperature-${headers[kafka.KEY]}-${date:now}.txt"))
-                    .to("aws2-s3://{{ .Values.global.s3.bucket.name }}?" + s3params)
+                    .to("aws2-s3://" + s3_bucket_name + "?" + s3params)
                     .log("Uploaded Temperature from [ ${headers[kafka.KEY]} ] dataset to S3");
             }
             @Override
