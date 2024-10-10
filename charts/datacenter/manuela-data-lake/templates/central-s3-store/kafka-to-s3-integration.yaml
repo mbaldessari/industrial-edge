@@ -6,9 +6,6 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
-  traits:
-    camel:
-      runtimeVersion: 3.21.x
   configuration:
     - type: configmap
       value: kafka-to-s3-config
