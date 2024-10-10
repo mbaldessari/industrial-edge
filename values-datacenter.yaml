@@ -51,7 +51,7 @@ clusterGroup:
       - manuela-tst-all
 
     camelk-prod-dev:
-      name: red-hat-camel-k
+      name: camel-k
       namespaces:
       - manuela-data-lake
       - manuela-tst-all
