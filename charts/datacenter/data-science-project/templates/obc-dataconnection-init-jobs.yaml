@@ -30,6 +30,18 @@ spec:
               value: aws-connection-user
             - name: BUCKET_NAME
               value: user-bucket
+        - image: quay.io/mmurakam/obc-dataconnection-init:obc-dataconnection-init-v0.1.2
+          imagePullPolicy: Always
+          name: anomaly-dataconnection-init-job
+          env:
+            - name: NAMESPACE
+              value: ml-development
+            - name: SOURCE_SECRET_NAME
+              value: anomaly-detection
+            - name: TARGET_SECRET_NAME
+              value: aws-connection-anomaly
+            - name: BUCKET_NAME
+              value: anomaly-detection
       dnsPolicy: ClusterFirst
       restartPolicy: Never
       serviceAccount: obc-dataconnection-init
