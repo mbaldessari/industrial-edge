@@ -65,6 +65,7 @@ spec:
                 String endpoint = "&uriEndpointOverride=" + s3_custom_endpoint_url;
             	String s3params = key
                 + customendpoint
+                + "&forcePathStyle=true"
                 + endpoint
                 + secret
                 + region;
@@ -97,6 +98,7 @@ spec:
                 String endpoint = "&uriEndpointOverride=" + s3_custom_endpoint_url;
             	String s3params = key
                 + customendpoint
+                + "&forcePathStyle=true"
                 + endpoint
                 + secret
                 + region;
