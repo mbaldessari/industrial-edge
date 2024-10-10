@@ -10,7 +10,7 @@ spec:
     - type: configmap
       value: kafka-to-s3-config
     - type: secret
-      value: s3-secret
+      value: s3-anomaly
   profile: OpenShift
   sources:
     - content: |
@@ -41,9 +41,9 @@ spec:
             @PropertyInject("s3.custom.endpoint.url")
             private String s3_custom_endpoint_url;
 
-            @PropertyInject("s3.accessKey")
+            @PropertyInject("AWS_ACCESS_KEY_ID")
             private String s3_accessKey;
-            @PropertyInject("s3.secretKey")
+            @PropertyInject("AWS_SECRET_ACCESS_KEY")
             private String s3_secretKey;
             @PropertyInject("s3.message.aggregation.count")
             private String s3_message_aggregation_count;
