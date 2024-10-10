@@ -55,6 +55,9 @@ clusterGroup:
       namespaces:
       - manuela-data-lake
       - manuela-tst-all
+      channel: stable-v2
+      source: community-operators
+      sourceNamespace: openshift-marketplace
 
     pipelines:
       name: openshift-pipelines-operator-rh
