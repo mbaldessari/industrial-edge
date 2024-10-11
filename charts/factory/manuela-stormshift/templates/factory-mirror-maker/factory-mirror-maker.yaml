@@ -20,7 +20,7 @@ spec:
       prod-kafka-cluster-kafka-bootstrap-manuela-data-lake.{{ .Values.global.hubClusterDomain }}:443
     tls:
       trustedCertificates:
-        - certificate: hub-kube-root-ca.crt
+        - certificate: ca.crt
           secretName: prod-kafka-cluster-cluster-ca-cert
   readinessProbe:
     failureThreshold: 2
