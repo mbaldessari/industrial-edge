@@ -138,8 +138,11 @@ clusterGroup:
       namespace: openshift-storage
       project: datacenter
       # path: charts/datacenter/data-lake/odf
-      chart: openshift-data-foundations
-      chartVersion: 0.1.*
+      #chart: openshift-data-foundations
+      #chartVersion: 0.1.*
+      path: "."
+      chartVersion: fix-noobaa
+      repoURL: https://github.com/mbaldessari/openshift-data-foundations-chart
 
     data-science-cluster:
       name: data-science-cluster
