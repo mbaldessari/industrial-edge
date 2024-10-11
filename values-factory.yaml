@@ -6,6 +6,7 @@ clusterGroup:
   - manuela-stormshift-line-dashboard
   - manuela-stormshift-machine-sensor
   - manuela-stormshift-messaging
+  - golang-external-secrets
 
   subscriptions:
   - name: seldon-operator-certified
