@@ -15,6 +15,8 @@ spec:
         trustedCertificates:
         - certificate: ca.crt
           secretName: prod-kafka-cluster-cluster-ca-cert
+      config:
+        ssl.endpoint.identification.algorithm: ''
     - alias: factory-kafka-cluster
       bootstrapServers: 'factory-kafka-cluster-kafka-bootstrap.manuela-stormshift-messaging.svc:9092'
       config:
