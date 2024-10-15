@@ -62,7 +62,7 @@ spec:
     enableExternalRoute: false
     externalStorage:
       bucket: pipeline-bucket
-      host: 's3.openshift-storage.svc.cluster.local'
+      host: {{ .Values.s3.default_nohttp_endpoint }}
       port: ''
       s3CredentialsSecret:
         accessKey: AWS_ACCESS_KEY_ID
@@ -170,8 +170,8 @@ spec:
           volumeMounts:
             - mountPath: /opt/app-root/src
               name: jupyterlab
-            - mountPath: /opt/app-root/runtimes
-              name: elyra-dsp-details
+#            - mountPath: /opt/app-root/runtimes
+#              name: elyra-dsp-details
             - mountPath: /dev/shm
               name: shm
             - mountPath: /etc/pki/tls/custom-certs/ca-bundle.crt
@@ -248,9 +248,9 @@ spec:
         - name: jupyterlab
           persistentVolumeClaim:
             claimName: workbench-pvc
-        - name: elyra-dsp-details
-          secret:
-            secretName: ds-pipeline-config
+#        - name: elyra-dsp-details
+#          secret:
+#            secretName: ds-pipeline-config
         - emptyDir:
             medium: Memory
           name: shm
