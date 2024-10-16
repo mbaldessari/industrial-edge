@@ -12,7 +12,11 @@ clusterGroup:
     namespace: manuela-stormshift-messaging
 
   - name: amq-broker-rhel8
-    namespace: manuela-stormshift-messaging
+    # namespace: manuela-stormshift-messaging
+    channel: stable
+    name: strimzi-kafka-operator
+    source: community-operators
+    sourceNamespace: openshift-marketplace
 
   - name: red-hat-camel-k
     namespace: manuela-stormshift-messaging

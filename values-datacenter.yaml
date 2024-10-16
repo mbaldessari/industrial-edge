@@ -45,8 +45,12 @@ clusterGroup:
       namespace: open-cluster-management
 
     amqbroker-prod:
-      name: amq-broker-rhel8
-      namespace: manuela-tst-all
+      #name: amq-broker-rhel8
+      #namespace: manuela-tst-all
+      channel: stable
+      name: strimzi-kafka-operator
+      source: community-operators
+      sourceNamespace: openshift-marketplace
 
     amqstreams-prod-dev:
       name: amq-streams
