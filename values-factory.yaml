@@ -14,8 +14,10 @@ clusterGroup:
   - name: amq-broker-rhel8
     namespace: manuela-stormshift-messaging
 
-  - name: red-hat-camel-k
+  - name: camel-k
     namespace: manuela-stormshift-messaging
+    channel: stable-v2
+    source: community-operators
 
   projects:
   - factory

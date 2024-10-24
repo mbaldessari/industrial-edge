@@ -5,6 +5,7 @@ metadata:
   namespace: manuela-stormshift-messaging
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    strimzi.io/kraft: enabled
 spec:
   kafka:
     replicas: 3
