@@ -17,23 +17,29 @@
           # secretName: prod-kafka-cluster-cluster-ca-cert
     # - alias: factory-kafka-cluster
       # bootstrapServers: 'factory-kafka-cluster-kafka-bootstrap.factory-messaging.svc:9092'
+      # -1 means it will use the default replication factor configured in the broker
       # config:
-        # config.storage.replication.factor: 1
-        # offset.storage.replication.factor: 1
-        # status.storage.replication.factor: 1
+        # config.storage.replication.factor: -1
+        # offset.storage.replication.factor: -1
+        # status.storage.replication.factor: -1
   # mirrors:
     # - sourceCluster: factory-kafka-cluster
       # targetCluster: production-kafka-cluster
       # sourceConnector:
+        # tasksMax: 1
         # config:
-          # replication.factor: 1
-          # offset-syncs.topic.replication.factor: 1
+          # -1 means it will use the default replication factor configured in the broker
+          # replication.factor: -1
+          # offset-syncs.topic.replication.factor: -1
           # sync.topic.acls.enabled: 'false'
       # heartbeatConnector:
         # config:
-          # heartbeats.topic.replication.factor: 1
+          # heartbeats.topic.replication.factor: -1
       # checkpointConnector:
+        # tasksMax: 1
         # config:
-          # checkpoints.topic.replication.factor: 1
+          # checkpoints.topic.replication.factor: -1
+          # sync.group.offsets.enabled: "false"
+          # refresh.groups.interval.seconds: 600
       # topicsPattern: .*
       # groupsPattern: .*
