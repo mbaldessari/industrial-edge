@@ -19,10 +19,10 @@ oc = os.environ["HOME"] + "/oc_client/oc"
 def test_check_logging_edge():
     logger.info(
         "Checking logs for machine-sensor-1 in"
-        " manuela-stormshift-machine-sensor namespace"
+        " factory-machine-sensor namespace"
     )
     app_string = "application=machine-sensor-1"
-    log_out = get_log_output(app_string, namespace="manuela-stormshift-machine-sensor")
+    log_out = get_log_output(app_string, namespace="factory-machine-sensor")
     search_terms = ["Current", "Measure", "vibration"]
     if not search_log_output(log_out, search_terms):
         err_msg = "Failed to find expected output in machine-sensor-1 log"
@@ -31,9 +31,9 @@ def test_check_logging_edge():
     else:
         logger.info("PASS: Found expected output in machine-sensor-1 log")
 
-    logger.info("Checking logs for messaging in manuela-stormshift-messaging namespace")
+    logger.info("Checking logs for messaging in factory-messaging namespace")
     app_string = "app=messaging"
-    log_out = get_log_output(app_string, namespace="manuela-stormshift-messaging")
+    log_out = get_log_output(app_string, namespace="factory-messaging")
     search_terms = ["handleVibration", "Anomaly"]
     if not search_log_output(log_out, search_terms):
         err_msg = "Failed to find expected output in messaging log"
@@ -43,7 +43,7 @@ def test_check_logging_edge():
         logger.info("PASS: Found expected output in messaging log")
 
     logger.info(
-        "Checking logs for kafka (list) in manuela-stormshift-messaging" " namespace"
+        "Checking logs for kafka (list) in factory-messaging" " namespace"
     )
     log_out = subprocess.run(
         [
@@ -53,7 +53,7 @@ def test_check_logging_edge():
             "-c",
             "kafka",
             "-n",
-            "manuela-stormshift-messaging",
+            "factory-messaging",
             "--",
             "bin/kafka-topics.sh",
             "--list",
@@ -73,7 +73,7 @@ def test_check_logging_edge():
 
     # logger.info(
     #     "Checking logs for kafka (iot-sensor-sw-temperature) in"
-    #     " manuela-stormshift-messaging namespace"
+    #     " factory-messaging namespace"
     # )
     # log_proc = subprocess.Popen(
     #     [
@@ -83,7 +83,7 @@ def test_check_logging_edge():
     #         "-c",
     #         "kafka",
     #         "-n",
-    #         "manuela-stormshift-messaging",
+    #         "factory-messaging",
     #         "--",
     #         "bin/kafka-console-consumer.sh",
     #         "--topic",

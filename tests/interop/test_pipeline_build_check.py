@@ -21,7 +21,7 @@ def test_pipeline_build_check(openshift_dyn_client):
     logger.info("Running pipeline build check")
     regex = "[0-9]{1,4}$"
     project_hub = "manuela-tst-all"
-    project_edge = "manuela-stormshift-messaging"
+    project_edge = "factory-messaging"
     kubefile = os.getenv("KUBECONFIG_EDGE")
     kubefile_exp = os.path.expandvars(kubefile)
     openshift_dyn_client_edge = DynamicClient(

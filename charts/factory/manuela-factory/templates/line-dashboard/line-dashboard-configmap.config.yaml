@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: line-dashboard-configmap
+  namespace: factory-line-dashboard
+  labels:
+    app.kubernetes.io/instance: factory
+data:
+  "config.json": |-
+    {
+      "websocketHost": "http://messaging-factory-messaging.{{ .Values.global.localClusterDomain }}",
+      "websocketPath": "/api/service-web/socket",
+      "SERVER_TIMEOUT": "20000"
+    }

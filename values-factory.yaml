@@ -3,19 +3,19 @@ clusterGroup:
   isHubCluster: false
 
   namespaces:
-  - manuela-stormshift-line-dashboard
-  - manuela-stormshift-machine-sensor
-  - manuela-stormshift-messaging
+  - factory-line-dashboard
+  - factory-machine-sensor
+  - factory-messaging
 
   subscriptions:
   - name: amq-streams
-    namespace: manuela-stormshift-messaging
+    namespace: factory-messaging
 
   - name: amq-broker-rhel8
-    namespace: manuela-stormshift-messaging
+    namespace: factory-messaging
 
   - name: camel-k
-    namespace: manuela-stormshift-messaging
+    namespace: factory-messaging
     channel: stable-v2
     source: community-operators
 
@@ -25,7 +25,7 @@ clusterGroup:
   applications:
   - name: stormshift
     project: factory
-    path: charts/factory/manuela-stormshift
+    path: charts/factory/manuela-factory
     extraValueFiles:
       - /overrides/values-prod-imagedata.yaml
 

@@ -19,7 +19,7 @@ oc = os.environ["HOME"] + "/oc_client/oc"
 @pytest.mark.toggle_machine_sensor
 def test_toggle_machine_sensor(openshift_dyn_client):
     logger.info("Testing machine-sensor config change")
-    project = "manuela-stormshift-machine-sensor"
+    project = "factory-machine-sensor"
     cm_name = "machine-sensor-1"
     patterns_repo = f"{os.environ['HOME']}/validated_patterns/industrial-edge"
 
@@ -52,7 +52,7 @@ def test_toggle_machine_sensor(openshift_dyn_client):
     logger.info("Set 'SENSOR_TEMPERATURE_ENABLED' to 'true' and commit change")
 
     machine_sensor_file = (
-        f"{patterns_repo}/charts/factory/manuela-stormshift/"
+        f"{patterns_repo}/charts/factory/manuela-factory/"
         "templates/machine-sensor/machine-sensor-1-configmap.yaml"
     )
     logger.info(f"File Path : {machine_sensor_file}")
@@ -108,7 +108,7 @@ def test_toggle_machine_sensor(openshift_dyn_client):
 
     logger.info("Checking machine-sensor-1 logs for temperature data")
     app_string = "application=machine-sensor-1"
-    log_out = get_log_output(app_string, namespace="manuela-stormshift-machine-sensor")
+    log_out = get_log_output(app_string, namespace="factory-machine-sensor")
     search_terms = ["Current", "Measure", "temperature"]
     if not search_log_output(log_out, search_terms):
         err_msg = "Failed to find temperature data in machine-sensor-1 log"

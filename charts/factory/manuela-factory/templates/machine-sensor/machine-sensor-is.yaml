@@ -1,0 +1,25 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: machine-sensor
+  namespace: factory-machine-sensor
+spec:
+  lookupPolicy:
+    local: true
+  tags:
+  - name: {{ .Values.machine_sensor.bootstrap_tag | quote }}
+    from:
+      kind: DockerImage
+      name: {{ .Values.machine_sensor.bootstrap_image }}
+    importPolicy: {}
+    referencePolicy:
+      type: Local
+{{- range .Values.machine_sensor.built_tags }}
+  - name: {{ . | quote }}
+    from:
+      kind: DockerImage
+      name: "{{ $.Values.global.imageregistry.hostname }}/{{ $.Values.global.imageregistry.account }}/{{ $.Values.machine_sensor.repo_name }}:{{ . }}"
+    importPolicy: {}
+    referencePolicy:
+      type: Local
+{{- end }}

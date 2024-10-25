@@ -21,11 +21,11 @@ edge site (line server):
 3) manuela-data-lake-factory-mirror-maker
     a) amq stream cluster operator
     b) factory to central mirror maker
-4) manuela-stormshift-line-dashboard
+4) factory-line-dashboard
     a) line dashboard application
-5) manuela-stormshift-machine-sensor
+5) factory-machine-sensor
     a) machine sensors app
-6) manuela-stormshift-messaging
+6) factory-messaging
     a) amq broker operator and amq to MQTT broker
     b) seldon controller
     c) camel-k operator
@@ -108,8 +108,8 @@ def test_check_pod_status(openshift_dyn_client):
         "openshift-operators",
         "open-cluster-management-agent",
         "open-cluster-management-agent-addon",
-        "manuela-stormshift-line-dashboard",
-        "manuela-stormshift-machine-sensor",
+        "factory-line-dashboard",
+        "factory-machine-sensor",
         "openshift-gitops",
     ]
 
@@ -141,9 +141,9 @@ def test_check_pod_status(openshift_dyn_client):
 def test_validate_manuela_stormshift_line_dashboard_reachable_edge_site(
     openshift_dyn_client,
 ):
-    namespace = "manuela-stormshift-line-dashboard"
+    namespace = "factory-line-dashboard"
     logger.info(
-        "Check if manuela-stormshift-line-dashboard route/url on edge site is"
+        "Check if factory-line-dashboard route/url on edge site is"
         " reachable"
     )
 

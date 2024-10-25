@@ -1,0 +1,25 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: line-dashboard
+  namespace: factory-line-dashboard
+spec:
+  lookupPolicy:
+    local: true
+  tags:
+  - name: {{ .Values.iot_frontend.bootstrap_tag | quote }}
+    from:
+      kind: DockerImage
+      name: {{ .Values.iot_frontend.bootstrap_image }}
+    importPolicy: {}
+    referencePolicy:
+      type: Local
+{{- range .Values.iot_frontend.built_tags }}
+  - name: {{ . | quote }}
+    from:
+      kind: DockerImage
+      name: "{{ $.Values.global.imageregistry.hostname }}/{{ $.Values.global.imageregistry.account }}/{{ $.Values.iot_frontend.repo_name }}:{{ . }}"
+    importPolicy: {}
+    referencePolicy:
+      type: Local
+{{- end }}
