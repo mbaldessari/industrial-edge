@@ -6,7 +6,7 @@ metadata:
 spec:
   consumer:
     bootstrapServers: >-
-      factory-kafka-cluster-kafka-bootstrap.manuela-stormshift-messaging.svc:9092
+      factory-kafka-cluster-kafka-bootstrap.factory-messaging.svc:9092
     groupId: my-source-group-id
   include: .*
   livenessProbe:
