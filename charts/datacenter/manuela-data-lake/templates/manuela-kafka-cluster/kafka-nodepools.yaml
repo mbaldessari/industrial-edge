@@ -10,3 +10,5 @@ spec:
   roles:
     - controller
     - broker
+  storage:
+    type: ephemeral
