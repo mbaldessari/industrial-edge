@@ -2,7 +2,7 @@ apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaMirrorMaker
 metadata:
   name: factory-to-central-mm
-  namespace: manuela-stormshift-messaging
+  namespace: factory-messaging
 spec:
   consumer:
     bootstrapServers: >-
