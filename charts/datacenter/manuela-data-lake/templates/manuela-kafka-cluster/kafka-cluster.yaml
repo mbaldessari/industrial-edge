@@ -24,6 +24,18 @@ spec:
         type: route
         tls: true
         autentication:
+          type: tls
+      - name: wtfinternal
+        port: 9096
+        type: internal
+        tls: true
+        autentication:
+          type: scram-sha-512
+      - name: wtf
+        port: 9095
+        type: route
+        tls: true
+        autentication:
           type: scram-sha-512
     authorization:
       type: simple
@@ -51,7 +63,7 @@ metadata:
     strimzi.io/cluster: prod-kafka-cluster
 spec:
   authentication:
-    type: scram-sha-512
+    type: tls
   authorization:
     type: simple
     acls:

@@ -126,7 +126,7 @@ token-kubeconfig: ## Create a local ~/.kube/config with password (not usually ne
 # We only check the remote ssh git branch's existance if we're not running inside a container
 # as getting ssh auth working inside a container seems a bit brittle
 # If the main repoUpstreamURL field is set, then we need to check against
-# that and not target_repo
+# that and not target_repo. If EXTRA_HELM_OPTS is set we skip that check as it might override the repoupstreamURL
 .PHONY: validate-origin
 validate-origin: ## verify the git origin is available
 	@echo "Checking repository:"
@@ -135,7 +135,7 @@ validate-origin: ## verify the git origin is available
 		echo -n "  $(TARGET_REPO) - branch '$(TARGET_BRANCH)': ";\
 		git ls-remote --exit-code --heads $(TARGET_REPO) $(TARGET_BRANCH) >/dev/null &&\
 			echo "OK" || (echo "NOT FOUND"; exit 1);\
-	else\
+	elif [ -z "$(EXTRA_HELM_OPTS)" ]; then\
 		echo "Upstream URL set to: $(UPSTREAMURL)";\
 		echo -n "  $(UPSTREAMURL) - branch '$(TARGET_BRANCH)': ";\
 		git ls-remote --exit-code --heads $(UPSTREAMURL) $(TARGET_BRANCH) >/dev/null &&\
