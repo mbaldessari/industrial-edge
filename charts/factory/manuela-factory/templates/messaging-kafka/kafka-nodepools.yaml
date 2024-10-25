@@ -1,7 +1,7 @@
 apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaNodePool
 metadata:
-  name: kafka-combines
+  name: combined
   namespace: factory-messaging
   labels:
     strimzi.io/cluster: factory-kafka-cluster
