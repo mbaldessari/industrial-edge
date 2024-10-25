@@ -2,7 +2,7 @@ apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaNodePool
 metadata:
   name: kafka-combines
-  namespace: manuela-data-lake
+  namespace: manuela-stormshift-messaging
   labels:
     strimzi.io/cluster: factory-kafka-cluster
 spec:
