@@ -1,0 +1,12 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaNodePool
+metadata:
+  name: kafka-combines
+  namespace: manuela-data-lake
+  labels:
+    strimzi.io/cluster: prod-kafka-cluster
+spec:
+  replicas: 3
+  roles:
+    - controller
+    - broker
