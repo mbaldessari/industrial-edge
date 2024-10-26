@@ -23,19 +23,7 @@ spec:
         port: 9094
         type: route
         tls: true
-        autentication:
-          type: tls
-      - name: wtfinternal
-        port: 9096
-        type: internal
-        tls: true
-        autentication:
-          type: scram-sha-512
-      - name: wtf
-        port: 9095
-        type: route
-        tls: true
-        autentication:
+        authentication:
           type: scram-sha-512
     authorization:
       type: simple
@@ -45,42 +33,6 @@ spec:
       transaction.state.log.min.isr: 2
       transaction.state.log.replication.factor: 3
       min.insync.replicas: 2
-    storage:
-      type: ephemeral
-  zookeeper:
-    replicas: 3
-    storage:
-      type: ephemeral
   entityOperator:
     topicOperator: {}
     userOperator: {}
----
-apiVersion: kafka.strimzi.io/v1beta2
-kind: KafkaUser
-metadata:
-  name: kafka-user
-  labels:
-    strimzi.io/cluster: prod-kafka-cluster
-spec:
-  authentication:
-    type: tls
-  authorization:
-    type: simple
-    acls:
-      - resource:
-          type: topic
-          name: "*"
-          patternType: literal
-        operations:
-          - Create
-          - Describe
-          - DescribeConfigs
-          - Read
-          - Write
-        host: "*"
-      - resource: # Needed for every group for which the offset is synced
-          type: group
-          name: "*"
-        operations:
-          - Read
-          - Describe
