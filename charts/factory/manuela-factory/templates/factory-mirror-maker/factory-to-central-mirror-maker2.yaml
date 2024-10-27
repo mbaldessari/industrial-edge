@@ -17,7 +17,7 @@ spec:
           secretName: prod-kafka-cluster-cluster-ca-cert
       authentication:
         type: scram-sha-512
-        username: cluster-a-user
+        username: kafka-user
         passwordSecret:
           secretName: kafka-hub-user
           password: password
