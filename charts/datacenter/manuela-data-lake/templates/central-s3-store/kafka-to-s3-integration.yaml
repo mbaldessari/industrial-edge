@@ -76,7 +76,7 @@ spec:
                 + secret
                 + region;
 
-                String fromString = "kamelet:kafka-scram-source?" +
+                String fromString = "kafka:{{ .Values.kafka.broker.topic.vibration }}?" +
                     "bootstrapServers={{ .Values.kafka.broker.uri }}" +
                     "&topic={{ .Values.kafka.broker.topic.vibration }}" +
                     "&user=" + kafka_username +
