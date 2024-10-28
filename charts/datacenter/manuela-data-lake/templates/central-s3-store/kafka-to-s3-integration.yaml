@@ -41,6 +41,9 @@ spec:
             @PropertyInject("s3.custom.endpoint.url")
             private String s3_custom_endpoint_url;
 
+            @PropertyInject("kafka_password");
+            private String kafka_password;
+
             @PropertyInject("AWS_ACCESS_KEY_ID")
             private String s3_accessKey;
             @PropertyInject("AWS_SECRET_ACCESS_KEY")
@@ -52,9 +55,6 @@ spec:
             private String s3_bucket_name;
             @PropertyInject("s3.region")
             private String s3_region;
-            private String kafka_username = "kafka-user";
-            @PropertyInject("kafka_password");
-            private String kafka_password;
 
             @Override
             public void configure() throws Exception {
