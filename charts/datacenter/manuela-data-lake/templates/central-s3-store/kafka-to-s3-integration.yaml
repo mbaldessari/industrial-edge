@@ -43,6 +43,7 @@ spec:
 
             @PropertyInject("kafka_password")
             private String kafka_password;
+            private String kafka_username = "kafka-user";
 
             @PropertyInject("AWS_ACCESS_KEY_ID")
             private String s3_accessKey;
