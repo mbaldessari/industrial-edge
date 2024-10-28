@@ -52,6 +52,10 @@ spec:
             private String s3_bucket_name;
             @PropertyInject("s3.region")
             private String s3_region;
+            private String kafka_username = "kafka-user";
+            @PropertyInject("kafka_password");
+            private String kafka_password;
+
             @Override
             public void configure() throws Exception {
                 storeTemperatureInS3();
@@ -67,6 +71,9 @@ spec:
             	String s3params = key
                 + customendpoint
                 + "&forcePathStyle=true"
+                + "&user=" + kafka_username
+                + "&password=" + kafka_password
+                + "&saslMechanism=SCRAM-SHA-512"
                 + endpoint
                 + secret
                 + region;
