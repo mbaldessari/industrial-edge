@@ -14,7 +14,7 @@ spec:
   profile: OpenShift
   sources:
     - content: |
-       // dependency=camel:camel-endpointdsl
+        // dependency=camel:camel-endpointdsl
         package com.redhat.manuela.routes;
         import java.io.ByteArrayInputStream;
         import java.util.Iterator;
@@ -41,7 +41,7 @@ spec:
             @PropertyInject("s3.custom.endpoint.url")
             private String s3_custom_endpoint_url;
 
-            @PropertyInject("kafka_password");
+            @PropertyInject("kafka_password")
             private String kafka_password;
 
             @PropertyInject("AWS_ACCESS_KEY_ID")
