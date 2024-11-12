@@ -228,10 +228,15 @@ clusterGroup:
     # For additional overrides that apply to the jobs, please refer to
     # https://hybrid-cloud-patterns.io/imperative-actions/#additional-job-customizations
     verbosity: "-vvv"
+    # Default
+    # schedule: "*/10 * * * *"
     jobs:
       - name: clone-upstream-repos-gitea
         # ansible playbook to be run
         playbook: ./ansible/playbooks/clone_upstream_repos_gitea.yml
+        extravars:
+          - "repo_name=manuela-dev"
+          - "upstream_repo_url=https://github.com/validatedpatterns-demos/manuela-dev"
         # per playbook timeout in seconds
         timeout: 234
         # verbosity: "-v"
