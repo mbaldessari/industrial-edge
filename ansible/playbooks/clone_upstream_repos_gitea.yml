@@ -1,0 +1,8 @@
+---
+- name: Industrial repo cloning
+  hosts: localhost
+  connection: local
+  tasks:
+  - name: Print output  
+    ansible.builtin.debug:
+      msg: "Hello from the other side"
