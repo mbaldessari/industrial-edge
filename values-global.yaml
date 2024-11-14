@@ -4,7 +4,7 @@ main:
     enabled: true
     clusterGroupChartVersion: 0.9.*
   git:
-    repoUpstreamURL: https://github.com/validatedpatterns/industrial-edge
+    repoUpstreamURL: https://github.com/darkdoc/industrial-edge
 
 global:
   pattern: industrial-edge
@@ -15,7 +15,7 @@ global:
     installPlanApproval: Automatic
 
   imageregistry:
-    account: PLAINTEXT
+    account: aeros
     hostname: quay.io
     type: quay
 
