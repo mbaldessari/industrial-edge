@@ -14,6 +14,14 @@ global:
   localClusterDomain: local.example.com
   hubClusterDomain: hub.example.com
 
+secretStore:
+  name: vault-backend
+  kind: ClusterSecretStore
+
+s3:
+  default_endpoint: http://s3.openshift-storage.svc
+  default_region: none
+
 messaging:
   vibrationAlert: true
   vibrationAnomaly: true
