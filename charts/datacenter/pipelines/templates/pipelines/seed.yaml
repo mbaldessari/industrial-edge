@@ -74,7 +74,7 @@ spec:
       - name=config,config=environment
       - --workspace
       - name=build-artifacts,claimName=build-artifacts-rwo
-      - --prefix-name 
+      - --prefix-name
       - seed-iot-anomaly-detection
       - --showlog
       - --nocolour
@@ -91,13 +91,27 @@ spec:
       value:
       - pipeline
       - start
-      - seed-iot-consumer
+      - iot-component
+      - --param
+      - component_name=iot-consumer
+      - --param
+      - seed_prod_with_tags=true
+      - --param
+      - builder_image=registry.access.redhat.com/rhscl/nodejs-10-rhel7
+      - --param
+      - output_image_name=messaging
+      - --param
+      - target_image_configmapkey=IOT_CONSUMER_IMAGE
+      - --param
+      - configmap_prefix=IOT_CONSUMER
       - --workspace
       - name=gitrepos,claimName=gitrepos-rwo
       - --workspace
       - name=config,config=environment
       - --workspace
       - name=build-artifacts,claimName=build-artifacts-rwo
+      - --prefix-name
+      - seed-iot-consumer
       - --showlog
       - --nocolour
       - --exit-with-pipelinerun-error
@@ -113,15 +127,30 @@ spec:
       value:
       - pipeline
       - start
-      - seed-iot-frontend
+      - iot-component
+      - --param
+      - component_name=iot-frontend
+      - --param
+      - seed_prod_with_tags=true
+      - --param
+      - builder_image=quay.io/hybridcloudpatterns/ubi8-s2i-web-app
+      - --param
+      - output_image_name=line-dashboard
+      - --param
+      - target_image_configmapkey=IOT_FRONTEND_IMAGE
+      - --param
+      - configmap_prefix=IOT_FRONTEND
       - --workspace
       - name=gitrepos,claimName=gitrepos-rwo
       - --workspace
       - name=config,config=environment
       - --workspace
       - name=build-artifacts,claimName=build-artifacts-rwo
+      - --prefix-name
+      - seed-iot-frontend
       - --showlog
       - --nocolour
+      - --exit-with-pipelinerun-error
 
   - name: seed-iot-software-sensor
     runAfter:
@@ -134,12 +163,27 @@ spec:
       value:
       - pipeline
       - start
-      - seed-iot-software-sensor
+      - iot-component
+      - --param
+      - component_name=iot-software-sensor
+      - --param
+      - seed_prod_with_tags=true
+      - --param
+      - builder_image=registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift
+      - --param
+      - output_image_name=machine-sensor
+      - --param
+      - target_image_configmapkey=IOT_SWSENSOR_IMAGE
+      - --param
+      - configmap_prefix=IOT_SWSENSOR
       - --workspace
       - name=gitrepos,claimName=gitrepos-rwo
       - --workspace
       - name=config,config=environment
       - --workspace
       - name=build-artifacts,claimName=build-artifacts-rwo
+      - --prefix-name
+      - seed-iot-software-sensor
       - --showlog
       - --nocolour
+      - --exit-with-pipelinerun-error
