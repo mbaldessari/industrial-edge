@@ -15,7 +15,7 @@ global:
     installPlanApproval: Automatic
 
   imageregistry:
-    account: aeros
+    account: rhn_support_mbaldess
     hostname: quay.io
     type: quay
 
