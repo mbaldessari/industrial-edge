@@ -180,7 +180,7 @@ spec:
     taskRef:
       name: argocd-sync-and-wait
     runAfter:
-    - push-ops-test
+    - build-iot-software-sensor
     workspaces:
     - name: argocd-env-secret
       workspace: argocd-env-secret
@@ -223,7 +223,7 @@ spec:
       - stage-production
       - --showlog
       - --nocolour
-      - --param TAG=$(tasks.bump-build-version.results.image-tag)
+      - --param TAG=$(tasks.build-iot-consumer.bump-build-version-iot-consumer.results.image-tag)
       - --param CONFIGMAP_PREFIX=IOT_CONSUMER
       - --param SOURCE_IMAGE=image-registry.openshift-image-registry.svc:5000/manuela-tst-all/messaging
 
