@@ -55,7 +55,17 @@ spec:
       value:
       - pipeline
       - start
-      - seed-iot-anomaly-detection
+      - iot-component
+      - --param
+      - component_name=iot-anomaly-detection
+      - --param
+      - seed_prod_with_tags=true
+      - --param
+      - builder_image=quay.io/hybridcloudpatterns/python-38-rhel7
+      - --param
+      - output_image_name=anomaly-detection
+      - --param
+      - target_image_configmapkey=IOT_ANOMALY_IMAGE
       - --workspace
       - name=gitrepos,claimName=gitrepos-rwo
       - --workspace
