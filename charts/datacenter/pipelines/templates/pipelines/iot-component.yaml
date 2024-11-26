@@ -12,9 +12,9 @@ spec:
     type: string
     description: Name of IoT component to build
   - name: seed_prod_with_tags
-    type: bool
+    type: string
     description: Seed tags to prod env
-    default: false
+    default: "false"
   - name: builder_image
     type: string
     description: The builder image to use for building the component
