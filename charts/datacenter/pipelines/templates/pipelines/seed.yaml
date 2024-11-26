@@ -32,7 +32,7 @@ spec:
       - --param
       - OUTPUT_IMAGE_ACCOUNT_CONFIGMAPKEY=IMAGE_ACCOUNT
       - --param
-      - OUTPUT_IMAGE_NAME=http-ionic
+      - OUTPUT_IMAGE_NAME=httpd-ionic
       - --param
       - DEV_REVISION=$(params.DEV_REVISION)
       - --workspace
