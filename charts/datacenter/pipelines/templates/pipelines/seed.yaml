@@ -74,8 +74,10 @@ spec:
       - name=config,config=environment
       - --workspace
       - name=build-artifacts,claimName=build-artifacts-rwo
+      - --prefix-name seed-iot-anomaly-detection
       - --showlog
       - --nocolour
+      - --exit-with-pipelinerun-error
 
   - name: seed-iot-consumer
     runAfter:
@@ -97,6 +99,7 @@ spec:
       - name=build-artifacts,claimName=build-artifacts-rwo
       - --showlog
       - --nocolour
+      - --exit-with-pipelinerun-error
 
   - name: seed-iot-frontend
     runAfter:
