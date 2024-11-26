@@ -7,13 +7,6 @@ spec:
   lookupPolicy:
     local: true
   tags:
-  - name: {{ .Values.machine_sensor.bootstrap_tag | quote }}
-    from:
-      kind: DockerImage
-      name: {{ .Values.machine_sensor.bootstrap_image }}
-    importPolicy: {}
-    referencePolicy:
-      type: Local
 {{- range .Values.machine_sensor.built_tags }}
   - name: {{ . | quote }}
     from:
@@ -23,3 +16,10 @@ spec:
     referencePolicy:
       type: Local
 {{- end }}
+  - name: {{ .Values.machine_sensor.bootstrap_tag | quote }}
+    from:
+      kind: DockerImage
+      name: {{ .Values.machine_sensor.bootstrap_image }}
+    importPolicy: {}
+    referencePolicy:
+      type: Local
