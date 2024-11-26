@@ -24,7 +24,9 @@ spec:
   - name: target_image_configmapkey
     type: string
     description: Name of key of the target image in the configmap
-
+  - name: configmap_prefix
+    type: string
+    description: The prefix of the key in the configmap for the component
   tasks:
   - name: git-clone-dev
     taskRef:
@@ -144,7 +146,7 @@ spec:
       workspace: config
     params:
     - name: CONFIGMAP_PREFIX
-      value: $(params.target_image_configmapkey)
+      value: $(params.configmap_prefix)
     - name: ENVIRONMENT
       value: TEST
     - name: TAG
@@ -168,7 +170,7 @@ spec:
       workspace: config
     params:
     - name: CONFIGMAP_PREFIX
-      value: $(params.target_image_configmapkey)
+      value: $(params.configmap_prefix)
     - name: ENVIRONMENT
       value: PROD
     - name: TAG

@@ -41,3 +41,5 @@ spec:
     value: anomaly-detection
   - name: target_image_configmapkey
     value: IOT_ANOMALY_IMAGE
+  - name: configmap_prefix
+    value: IOT_ANOMALY

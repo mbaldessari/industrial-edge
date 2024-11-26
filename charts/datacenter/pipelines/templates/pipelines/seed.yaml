@@ -66,6 +66,8 @@ spec:
       - output_image_name=anomaly-detection
       - --param
       - target_image_configmapkey=IOT_ANOMALY_IMAGE
+      - --param
+      - configmap_prefix=IOT_ANOMALY
       - --workspace
       - name=gitrepos,claimName=gitrepos-rwo
       - --workspace
