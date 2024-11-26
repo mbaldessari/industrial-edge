@@ -167,6 +167,7 @@ spec:
       value: $(params.OPS_REVISION)
     - name: argocd-server
       value: "{{ .Values.clusterGroup.name }}-gitops-server.{{ .Values.global.pattern }}-{{ .Values.clusterGroup.name }}.svc"
+
   - name: test-all
     taskRef:
       name: tkn
@@ -194,9 +195,9 @@ spec:
       - stage-production
       - --showlog
       - --nocolour
-      - --param TAG=$(tasks.bump-build-version.results.image-tag) 
-      - --param CONFIGMAP_PREFIX=IOT_CONSUMER 
-      - --param SOURCE_IMAGE=image-registry.openshift-image-registry.svc:5000/manuela-tst-all/messaging 
+      - --param TAG=$(tasks.bump-build-version.results.image-tag)
+      - --param CONFIGMAP_PREFIX=IOT_CONSUMER
+      - --param SOURCE_IMAGE=image-registry.openshift-image-registry.svc:5000/manuela-tst-all/messaging
 
   - name: cleanup
     taskRef:
