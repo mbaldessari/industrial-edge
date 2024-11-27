@@ -139,7 +139,7 @@ spec:
       - --param
       - builder_image=quay.io/hybridcloudpatterns/ubi8-s2i-web-app
       - --param
-      - chained_build_dockerfile="FROM quay.io/hybridcloudpatterns/httpd-ionic\nCOPY --from=0 /opt/app-root/output /var/www/html/"
+      - chained_build_dockerfile=FROM quay.io/hybridcloudpatterns/httpd-ionic\nCOPY --from=0 /opt/app-root/output /var/www/html/
       - --param
       - output_image_name=line-dashboard
       - --param
