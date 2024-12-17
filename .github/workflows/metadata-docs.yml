@@ -24,7 +24,12 @@ jobs:
       id-token: write
 
     steps:
-      - name: Checkout repository
+      - name: Test
+        run: |-
+          echo "${{ env.DOCS_DIR }} - ${{ env.PATTERN_DIR }}"
+          echo "$(pwd)"
+
+      - name: Checkout pattern repository
         uses: actions/checkout@v4
         with:
           path: ${{ env.DOCS_DIR }}
@@ -46,7 +51,7 @@ jobs:
           echo "PATTERN=${pattern}" >> $GITHUB_ENV
         working-directory: ${{ env.PATTERN_DIR }}
 
-      - name: Checkout repository
+      - name: Checkout docs repository
         uses: actions/checkout@v4
         with:
           path: ${{ env.DOCS_DIR }}
