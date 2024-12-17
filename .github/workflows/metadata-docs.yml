@@ -12,6 +12,7 @@ env:
   DOCS_DIR: docs
   DOCS_PR_BRANCH: sizing-pr
   PATTERN_DIR: pattern
+  METADATA: pattern-metadata.yaml
 
 jobs:
   build-container-and-push:
@@ -43,7 +44,7 @@ jobs:
       - name: Fail if this repository is different than the one in metadata
         run: |-
           set -e
-          repo=$(yq -r .repo_url pattern-metadata.yaml)
+          repo=$(yq -r .repo_url ${{ env.METADATA }})
           full_url="https://github.com/${{ github.repository }}"
           if [ "${full_url}" == "${repo}" ]; then
             echo "OK"
@@ -51,8 +52,8 @@ jobs:
             echo "Error ${{ github.repository }} != ${full_url}"
             exit 1
           fi
-          docs_repo=$(yq -r .docs_repo_url pattern-metadata.yml)
-          pattern=$(yq -r .pattern pattern-metadata.yml)
+          docs_repo=$(yq -r .docs_repo_url ${{ env.METADATA }})
+          pattern=$(yq -r .pattern ${{ env.METADATA }})
           echo "DOCS_REPO=${docs_repo}" >> $GITHUB_ENV
           echo "PATTERN=${pattern}" >> $GITHUB_ENV
         working-directory: ${{ env.PATTERN_DIR }}
