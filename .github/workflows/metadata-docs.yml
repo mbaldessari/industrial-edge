@@ -52,7 +52,7 @@ jobs:
             echo "Error ${{ github.repository }} != ${full_url}"
             exit 1
           fi
-          docs_repo=$(yq -r .docs_repo_url ${{ env.METADATA }})
+          docs_repo=$(yq -r .docs_repo_url ${{ env.METADATA }} | sed -e 's%https://github.com/%%')
           pattern=$(yq -r .pattern ${{ env.METADATA }})
           echo "DOCS_REPO=${docs_repo}" >> $GITHUB_ENV
           echo "PATTERN=${pattern}" >> $GITHUB_ENV
