@@ -1,7 +1,11 @@
 version: 1.0
 pattern: industrial-edge
-repo_url: https://github.com/validatedpatterns/industrial-edge 
-docs_repo_url: https://github.com/validatedpatterns/docs 
+# FIXME
+#repo_url: https://github.com/validatedpatterns/industrial-edge 
+repo_url: https://github.com/mbaldessari/industrial-edge 
+# FIXME
+docs_repo_url: https://github.com/mbaldessari/docs 
+# docs_repo_url: https://github.com/validatedpatterns/docs 
 # optional - This is only needed if the content/patterns folder in the docs does not use the ${pattern} folder name
 # docs_folder: content/pattern/industrial-edge
 issues_url: https://github.com/validatedpatterns/industrial-edge/issues

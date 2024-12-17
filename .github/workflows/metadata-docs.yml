@@ -1,0 +1,75 @@
+---
+name: Update docs from pattern's metadata
+
+on:
+  paths:
+    - ./patttern-metadata.yaml
+
+env:
+  # FIXME
+  DOCS_BRANCH: test-script
+  DOCS_DIR: docs
+  DOCS_PR_BRANCH: sizing-pr
+  PATTERN_DIR: pattern
+
+jobs:
+  build-container-and-push:
+    needs: [test]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      # This is used to complete the identity challenge
+      # with sigstore/fulcio when running outside of PRs.
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          path: ${{ env.DOCS_DIR }}
+
+      - name: Fail if this repository is different than the one in metadata
+        run: |-
+          set -e
+          repo=$(yq -r .repo_url pattern-metadata.yaml)
+          full_url="https://github.com/${{ github.repository }}"
+          if [ "${full_url}" == "${repo}" ]; then
+            echo "OK"
+          else
+            echo "Error ${{ github.repository }} != ${full_url}"
+            exit 1
+          fi
+          docs_repo=$(yq -r .docs_repo_url pattern-metadata.yml)
+          pattern=$(yq -r .pattern pattern-metadata.yml)
+          echo "DOCS_REPO=${docs_repo}" >> $GITHUB_ENV
+          echo "PATTERN=${pattern}" >> $GITHUB_ENV
+        working-directory: ${{ env.PATTERN_DIR }}
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          path: ${{ env.DOCS_DIR }}
+          repository: ${{ env.DOCS_REPO }}
+          ref: ${{ env.DOCS_BRANCH }}
+
+      - name: Template the cluster sizing
+        run: |-
+          set -e
+          ruby ./${{ env.DOCS_DIR }}/utils/erb-templating.rb \
+            ./${{ env.PATTERN_DIR }}/pattern-metadata.yaml \
+            ./${{ env.DOCS_DIR }}/utils/sizing-template.adoc.erb | \
+              tee ${{ env.DOCS_DIR }}/modules/${{ env.PATTERN }}-cluster-sizing.adoc
+
+      # FIXME: check what happens when there are no changes in git
+      - name: Push to docs git repo
+        run: |-
+          set -e
+          git checkout -B "${{ env.DOCS_PR_BRANCH }}" "${{ env.DOCS_BRANCH }}"
+          git add modules/${{ env.PATTERN }}-cluster-sizing.adoc
+          git commit -m "Update cluster sizing for ${{ env.PATTERN }}" || echo "Nothing to commit"
+          git push origin "${{ env.DOCS_PR_BRANCH }}"
+          gh pr create -B "${{ env.DOCS_BRANCH }}" -H "${{ env.DOCS_PR_BRANCH }}" --title 'Merge cluster sizing change for ${{ env.PATTERN }}' --body 'Created by Github action'
+        working-directory: ${{ env.DOCS_DIR }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
