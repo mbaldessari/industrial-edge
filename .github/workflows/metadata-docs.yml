@@ -13,6 +13,8 @@ env:
   DOCS_PR_BRANCH: sizing-pr
   PATTERN_DIR: pattern
   METADATA: pattern-metadata.yaml
+  GIT_EMAIL: vp-team@redhat.com
+  GIT_USER: Github Actions
 
 jobs:
   build-container-and-push:
@@ -77,6 +79,8 @@ jobs:
       - name: Push to docs git repo
         run: |-
           set -e
+          git config --global user.email "${{ env.GIT_EMAIL }}"
+          git config --global user.name "${{ env.GIT_USER }}"
           git checkout -B "${{ env.DOCS_PR_BRANCH }}" "${{ env.DOCS_BRANCH }}"
           git add modules/${{ env.PATTERN }}-cluster-sizing.adoc
           git commit -m "Update cluster sizing for ${{ env.PATTERN }}" || echo "Nothing to commit"
