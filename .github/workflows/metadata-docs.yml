@@ -2,11 +2,9 @@
 name: Update docs from pattern's metadata
 
 on:
-  paths:
-    - pattern-metadata.yaml
-  branches:
-    - main
-    - metadata
+  push:
+    paths:
+      - pattern-metadata.yaml
 
 env:
   # FIXME
@@ -17,7 +15,6 @@ env:
 
 jobs:
   build-container-and-push:
-    needs: [test]
     runs-on: ubuntu-latest
     permissions:
       contents: read
