@@ -1,0 +1,37 @@
+version: 1.0
+pattern: industrial-edge
+repo_url: https://github.com/validatedpatterns/industrial-edge 
+docs_repo_url: https://github.com/validatedpatterns/docs 
+# optional - This is only needed if the content/patterns folder in the docs does not use the ${pattern} folder name
+# docs_folder: content/pattern/industrial-edge
+issues_url: https://github.com/validatedpatterns/industrial-edge/issues
+docs_url: https://validatedpatterns.io/patterns/industrial-edge/ 
+ci_url: https://validatedpatterns.io/ci/?pattern=industrialedge 
+tier: tested
+owners: mbaldessari, darkdoc
+requirements:
+  compute:
+    platform:
+      gcp:
+        replicas: 5
+        type: n1-standard-16
+      azure:
+        replicas: 5
+        type: Standard_D16s_v5
+      aws:
+        replicas: 3
+        type: m5.4xlarge
+  controlPlane:
+    platform:
+      gcp:
+        replicas: 3
+        type: n1-standard-16
+      azure:
+        replicas: 3
+        type: Standard_D16s_v3
+      aws:
+        replicas: 3
+        type: m5.4xlarge
+    
+external_requirements:
+# external quay, s3 bucket, agof tokens to access paywalled material, manifests, rag-llm hw (only selected regions)
