@@ -34,6 +34,12 @@ jobs:
         with:
           path: ${{ env.PATTERN_DIR }}
 
+      - name: Test2
+        run: |-
+          echo "$(pwd)"
+          ls -la
+          ls -la ${{ env.PATTERN_DIR }}
+
       - name: Fail if this repository is different than the one in metadata
         run: |-
           set -e
