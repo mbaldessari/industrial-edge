@@ -88,4 +88,4 @@ jobs:
           gh pr create -B "${{ env.DOCS_BRANCH }}" -H "${{ env.DOCS_PR_BRANCH }}" --title 'Merge cluster sizing change for ${{ env.PATTERN }}' --body 'Created by Github action'
         working-directory: ${{ env.DOCS_DIR }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.DOCS_TOKEN }}
