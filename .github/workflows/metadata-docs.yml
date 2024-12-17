@@ -66,6 +66,7 @@ jobs:
           path: ${{ env.DOCS_DIR }}
           repository: ${{ env.DOCS_REPO }}
           ref: ${{ env.DOCS_BRANCH }}
+          token: ${{ secrets.DOCS_TOKEN }}
 
       - name: Template the cluster sizing
         run: |-
