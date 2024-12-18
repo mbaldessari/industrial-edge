@@ -1,6 +1,6 @@
 version: 1.0
 pattern: industrial-edge
-
+display_name: Industrial Edge
 # FIXME
 #repo_url: https://github.com/validatedpatterns/industrial-edge 
 repo_url: https://github.com/mbaldessari/industrial-edge 
@@ -12,31 +12,56 @@ docs_repo_url: https://github.com/mbaldessari/docs
 issues_url: https://github.com/validatedpatterns/industrial-edge/issues
 docs_url: https://validatedpatterns.io/patterns/industrial-edge/ 
 ci_url: https://validatedpatterns.io/ci/?pattern=industrialedge 
+# can be sandbox, tested or maintained
 tier: tested
 owners: mbaldessari, darkdoc
 requirements:
-  compute:
-    platform:
-      gcp:
-        replicas: 5
-        type: n1-standard-16
-      azure:
-        replicas: 5
-        type: Standard_D16s_v5
-      aws:
-        replicas: 3
-        type: m5.4xlarge
-  controlPlane:
-    platform:
-      gcp:
-        replicas: 3
-        type: n1-standard-16
-      azure:
-        replicas: 3
-        type: Standard_D16s_v3
-      aws:
-        replicas: 3
-        type: m5.4xlarge
+  hub: # Main cluster
+    compute:
+      platform:
+        gcp:
+          replicas: 5
+          type: n1-standard-16
+        azure:
+          replicas: 5
+          type: Standard_D16s_v5
+        aws:
+          replicas: 3
+          type: m5.4xlarge
+    controlPlane:
+      platform:
+        gcp:
+          replicas: 3
+          type: n1-standard-16
+        azure:
+          replicas: 3
+          type: Standard_D16s_v3
+        aws:
+          replicas: 3
+          type: m5.4xlarge
+  spoke: # optional - represents the clusters imported into ACM
+    compute:
+      platform:
+        gcp:
+          replicas: 3
+          type: n1-standard-16
+        azure:
+          replicas: 3
+          type: Standard_D16s_v5
+        aws:
+          replicas: 3
+          type: m5.2xlarge
+    controlPlane:
+      platform:
+        gcp:
+          replicas: 3
+          type: n1-standard-16
+        azure:
+          replicas: 3
+          type: Standard_D16s_v5
+        aws:
+          replicas: 3
+          type: m5.2xlarge
     
 external_requirements:
 # external quay, s3 bucket, agof tokens to access paywalled material, manifests, rag-llm hw (only selected regions)
