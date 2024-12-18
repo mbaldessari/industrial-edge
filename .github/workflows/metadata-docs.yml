@@ -21,35 +21,20 @@ jobs:
     permissions:
       contents: read
       packages: write
-      # This is used to complete the identity challenge
-      # with sigstore/fulcio when running outside of PRs.
       id-token: write
 
     steps:
-      - name: Test
-        run: |-
-          echo "${{ env.DOCS_DIR }} - ${{ env.PATTERN_DIR }}"
-          echo "$(pwd)"
-
       - name: Checkout pattern repository
         uses: actions/checkout@v4
         with:
           path: ${{ env.PATTERN_DIR }}
-
-      - name: Test2
-        run: |-
-          echo "$(pwd)"
-          ls -la
-          ls -la ${{ env.PATTERN_DIR }}
 
       - name: Fail if this repository is different than the one in metadata
         run: |-
           set -e
           repo=$(yq -r .repo_url ${{ env.METADATA }})
           full_url="https://github.com/${{ github.repository }}"
-          if [ "${full_url}" == "${repo}" ]; then
-            echo "OK"
-          else
+          if [ "${full_url}" != "${repo}" ]; then
             echo "Error ${{ github.repository }} != ${full_url}"
             exit 1
           fi
