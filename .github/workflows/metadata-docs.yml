@@ -71,7 +71,10 @@ jobs:
           git add modules/${{ env.PATTERN }}-cluster-sizing.adoc
           git commit -m "Update cluster sizing for ${{ env.PATTERN }}" || echo "Nothing to commit"
           git push origin "${{ env.DOCS_PR_BRANCH }}" -f
-          gh pr create -B "${{ env.DOCS_BRANCH }}" -H "${{ env.DOCS_PR_BRANCH }}" --title 'Merge cluster sizing change for ${{ env.PATTERN }}' --body 'Created by Github action'
+          gh pr create -B "${{ env.DOCS_BRANCH }}" -H "${{ env.DOCS_PR_BRANCH }}" \
+            --title 'Merge cluster sizing change for ${{ env.PATTERN }}' --body 'Created by Github action' || \
+            gh pr edit -B "${{ env.DOCS_BRANCH }}" -H "${{ env.DOCS_PR_BRANCH }}" \
+              --title 'Merge cluster sizing change for ${{ env.PATTERN }}' --body 'Created by Github action'                                                                     
         working-directory: ${{ env.DOCS_DIR }}
         env:
           GITHUB_TOKEN: ${{ secrets.DOCS_TOKEN }}
