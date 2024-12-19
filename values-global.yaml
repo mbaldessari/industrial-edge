@@ -5,6 +5,9 @@ main:
     clusterGroupChartVersion: 0.9.*
   git:
     repoUpstreamURL: https://github.com/validatedpatterns/industrial-edge
+  gitea:
+    chartVersion: 0.0.3
+    helmRepoUrl: oci://quay.io/rhn_support_mbaldess/gitea
 
 global:
   pattern: industrial-edge
