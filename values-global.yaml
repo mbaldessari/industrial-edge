@@ -4,7 +4,7 @@ main:
     enabled: true
     clusterGroupChartVersion: 0.9.*
   git:
-    repoUpstreamURL: https://github.com/validatedpatterns/industrial-edge
+    repoUpstreamURL: https://github.com/mbaldessari/industrial-edge
   gitea:
     chartVersion: 0.0.3
     helmRepoUrl: oci://quay.io/rhn_support_mbaldess/gitea
