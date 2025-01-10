@@ -13,6 +13,6 @@ spec:
         - secret:s3-anomaly
   profile: OpenShift
   sources:
-    - content: |-
-{{ .Files.Get "Kafka2S3Route.java" | indent 8 }}
+    - content: |
       name: Kafka2S3Route.java
+{{ .Files.Get "Kafka2S3Route.java" | indent 8 }}
