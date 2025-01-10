@@ -12,5 +12,5 @@ spec:
   profile: OpenShift
   sources:
     - content: |
-      name: MQTT2KafkaRoute.java
 {{ .Files.Get "MQTT2KafkaRoute.java" | indent 8 }}
+      name: MQTT2KafkaRoute.java

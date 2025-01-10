@@ -14,5 +14,5 @@ spec:
   profile: OpenShift
   sources:
     - content: |
-      name: Kafka2S3Route.java
 {{ .Files.Get "Kafka2S3Route.java" | indent 8 }}
+      name: Kafka2S3Route.java
