@@ -200,6 +200,8 @@ spec:
               value: /etc/pki/tls/custom-certs/ca-bundle.crt
             - name: PIP_CERT
               value: /etc/pki/tls/custom-certs/ca-bundle.crt
+            - name: TRUSTED_CA_BUNDLE_PATH
+              value: /etc/pki/tls/custom-certs/ca-bundle.crt
             - name: REQUESTS_CA_BUNDLE
               value: /etc/pki/tls/custom-certs/ca-bundle.crt
           ports:
@@ -459,6 +461,8 @@ spec:
             - name: GIT_SSL_CAINFO
               value: /etc/pki/tls/custom-certs/ca-bundle.crt
             - name: PIP_CERT
+              value: /etc/pki/tls/custom-certs/ca-bundle.crt
+            - name: TRUSTED_CA_BUNDLE_PATH
               value: /etc/pki/tls/custom-certs/ca-bundle.crt
             - name: REQUESTS_CA_BUNDLE
               value: /etc/pki/tls/custom-certs/ca-bundle.crt
