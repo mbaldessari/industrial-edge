@@ -49,14 +49,12 @@ clusterGroup:
       - manuela-tst-all
 
     camelk-prod-dev:
-      name: camel-k
+      name: red-hat-camel-k
       namespaces:
       - manuela-data-lake
       - manuela-tst-all
-      channel: stable-v2
-      csv: camel-k-operator.v2.5.1
-      installPlanApproval: Manual
-      source: community-operators
+      channel: 1.10.x
+      source: redhat-operators
       sourceNamespace: openshift-marketplace
 
     pipelines:
