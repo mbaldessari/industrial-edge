@@ -264,7 +264,7 @@ spec:
             - '--cookie-expire=24h0m0s'
             - '--tls-cert=/etc/tls/private/tls.crt'
             - '--tls-key=/etc/tls/private/tls.key'
-            - '--upstream=http://localhost:8888'
+            - '--upstream=http://localhost:8888/notebook/ml-development/jupyterlab'
             - '--upstream-ca=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt'
             - '--email-domain=*'
             - '--skip-provider-button'
