@@ -169,11 +169,11 @@ spec:
             - name: NOTEBOOK_ARGS
               value: |-
                 --ServerApp.port=8888
-                                  --ServerApp.token=''
-                                  --ServerApp.password=''
-                                  --ServerApp.base_url=/notebook/ml-development/jupyterlab
-                                  --ServerApp.quit_button=False
-                                  --ServerApp.tornado_settings={"user":"user","hub_host":"https://rhods-dashboard-redhat-ods-applications.{{ .Values.global.localClusterDomain }}","hub_prefix":"/projects/ml-development"}
+                --ServerApp.token=''
+                --ServerApp.password=''
+                --ServerApp.base_url=/notebook/ml-development/jupyterlab
+                --ServerApp.quit_button=False
+                --ServerApp.tornado_settings={"user":"user","hub_host":"https://rhods-dashboard-redhat-ods-applications.{{ .Values.global.localClusterDomain }}","hub_prefix":"/projects/ml-development"}
             - name: JUPYTER_IMAGE
               value: image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/industrial-edge:industrial-edge-v0.1.0
             - name: SSL_CERT_FILE
@@ -264,7 +264,7 @@ spec:
             - '--cookie-expire=24h0m0s'
             - '--tls-cert=/etc/tls/private/tls.crt'
             - '--tls-key=/etc/tls/private/tls.key'
-            - '--upstream=http://localhost:8888/notebook/ml-development/jupyterlab'
+            - '--upstream=http://localhost:8888'
             - '--upstream-ca=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt'
             - '--email-domain=*'
             - '--skip-provider-button'
