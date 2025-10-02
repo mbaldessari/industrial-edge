@@ -1,0 +1,18 @@
+- All apps are green
+
+Known issues:
+1. The jupyter route when clicked from Networking does not work out of the box because the jupyter notebook will give a 404
+   The route points
+   to: https://jupyterlab-ml-development.apps.mcg-hub.aws.validatedpatterns.io/but
+   that gives a 404. I have to enter the url with a piece at the
+   end: https://jupyterlab-ml-development.apps.mcg-hub.aws.validatedpatterns.io/notebook/ml-development/jupyterlab/lab
+   for it to work.
+
+   Changing the --upstream to include the path in the oauth container, did not help as it gets rewritten
+   Maybe this is not a big deal.
+
+2. RHOAI Console gives me "Access permissions needed - To access Red Hat
+   OpenShift AI, ask your administrator to adjust your permissions." when logging
+   in with kubeadmin.
+
+   Seems it now needs a proper oauth user which then needs to be added to the `redhat-ods-applications` group.
