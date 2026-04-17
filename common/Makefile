@@ -39,15 +39,15 @@ TOKEN_SECRET ?=
 TOKEN_NAMESPACE ?=
 
 ifeq ($(TOKEN_SECRET),)
-  HELM_OPTS=-f values-global.yaml --set main.git.repoURL="$(TARGET_REPO)" --set main.git.revision=$(TARGET_BRANCH) $(TARGET_SITE_OPT) $(UUID_HELM_OPTS) $(EXTRA_HELM_OPTS)
+  HELM_OPTS=-f values-global.yaml --set main.patternsOperator.subscriptionNamespace=patterns-operator --set main.git.repoURL="$(TARGET_REPO)" --set main.git.revision=$(TARGET_BRANCH) $(TARGET_SITE_OPT) $(UUID_HELM_OPTS) $(EXTRA_HELM_OPTS)
 else
   # When we are working with a private repository we do not escape the git URL as it might be using an ssh secret which does not use https://
   TARGET_CLEAN_REPO=$(shell git ls-remote --get-url --symref $(TARGET_ORIGIN))
-  HELM_OPTS=-f values-global.yaml --set main.tokenSecret=$(TOKEN_SECRET) --set main.tokenSecretNamespace=$(TOKEN_NAMESPACE) --set main.git.repoURL="$(TARGET_CLEAN_REPO)" --set main.git.revision=$(TARGET_BRANCH) $(TARGET_SITE_OPT) $(UUID_HELM_OPTS) $(EXTRA_HELM_OPTS)
+  HELM_OPTS=-f values-global.yaml --set main.patternsOperator.subscriptionNamespace=patterns-operator --set main.tokenSecret=$(TOKEN_SECRET) --set main.tokenSecretNamespace=$(TOKEN_NAMESPACE) --set main.git.repoURL="$(TARGET_CLEAN_REPO)" --set main.git.revision=$(TARGET_BRANCH) $(TARGET_SITE_OPT) $(UUID_HELM_OPTS) $(EXTRA_HELM_OPTS)
 endif
 
 # Helm does the right thing and fetches all the tags and detects the newest one
-PATTERN_INSTALL_CHART ?= oci://quay.io/hybridcloudpatterns/pattern-install
+PATTERN_INSTALL_CHART ?= oci://quay.io/validatedpatterns/pattern-install
 
 ##@ Pattern Common Tasks
 
