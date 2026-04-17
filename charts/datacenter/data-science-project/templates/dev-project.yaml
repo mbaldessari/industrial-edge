@@ -192,8 +192,6 @@ spec:
               name: elyra-dsp-details
             - mountPath: /dev/shm
               name: shm
-            - mountPath: /dev/shm
-              name: shm
             - mountPath: /etc/pki/tls/custom-certs/ca-bundle.crt
               name: trusted-ca
               readOnly: true
