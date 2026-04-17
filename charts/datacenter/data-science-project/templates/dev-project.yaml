@@ -123,14 +123,6 @@ spec:
               name: jupyterlab
             - mountPath: /opt/app-root/runtimes
               name: elyra-dsp-details
-            - mountPath: /dev/shm
-              name: shm
-            - mountPath: /etc/pki/tls/custom-certs/ca-bundle.crt
-              name: trusted-ca
-              readOnly: true
-              subPath: ca-bundle.crt
-            - mountPath: /opt/app-root/pipeline-runtimes/
-              name: runtime-images
       containers:
         - resources:
             limits:
@@ -200,6 +192,14 @@ spec:
               name: elyra-dsp-details
             - mountPath: /dev/shm
               name: shm
+            - mountPath: /dev/shm
+              name: shm
+            - mountPath: /etc/pki/tls/custom-certs/ca-bundle.crt
+              name: trusted-ca
+              readOnly: true
+              subPath: ca-bundle.crt
+            - mountPath: /opt/app-root/pipeline-runtimes/
+              name: runtime-images
           image: image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/industrial-edge:industrial-edge-v0.1.0
           workingDir: /opt/app-root/src
         - resources:
