@@ -38,6 +38,7 @@
 
     - name: Does repo already exist
       ansible.builtin.uri:
+        validate_certs: false
         url: "{{ gitea_repos_route }}"
       register: repo_exists
       failed_when: false
