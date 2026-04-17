@@ -125,6 +125,12 @@ spec:
               name: elyra-dsp-details
             - mountPath: /dev/shm
               name: shm
+            - mountPath: /etc/pki/tls/custom-certs/ca-bundle.crt
+              name: trusted-ca
+              readOnly: true
+              subPath: ca-bundle.crt
+            - mountPath: /opt/app-root/pipeline-runtimes/
+              name: runtime-images
       containers:
         - resources:
             limits:
@@ -295,6 +301,21 @@ spec:
             defaultMode: 420
         - name: ca-bundles
           emptyDir: {}
+        - configMap:
+            items:
+              - key: ca-bundle.crt
+                path: ca-bundle.crt
+            name: workbench-trusted-ca-bundle
+            optional: true
+          name: trusted-ca
+        - configMap:
+            name: pipeline-runtime-images
+            optional: true
+          name: runtime-images
+        - name: oauth-client
+          secret:
+            defaultMode: 420
+            secretName: jupyterlab-oauth-client
 ---
 apiVersion: objectbucket.io/v1alpha1
 kind: ObjectBucketClaim
