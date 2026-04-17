@@ -478,6 +478,14 @@ spec:
               name: s3-browser
             - mountPath: /dev/shm
               name: shm
+            - mountPath: /etc/pki/tls/custom-certs/ca-bundle.crt
+              name: trusted-ca
+              readOnly: true
+              subPath: ca-bundle.crt
+            - mountPath: /opt/app-root/pipeline-runtimes/
+              name: runtime-images
+            - mountPath: /opt/app-root/runtimes
+              name: elyra-dsp-details
           envFrom:
             - secretRef:
                 name: aws-connection-user-bucket
@@ -522,6 +530,8 @@ spec:
               protocol: TCP
           imagePullPolicy: Always
           volumeMounts:
+            - mountPath: /etc/oauth/client
+              name: oauth-client
             - mountPath: /etc/oauth/config
               name: oauth-config
             - mountPath: /etc/tls/private
@@ -539,6 +549,9 @@ spec:
             - '--upstream-ca=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt'
             - '--email-domain=*'
             - '--skip-provider-button'
+            - '--client-id=s3-browser-ml-development-oauth-client'
+            - '--client-secret-file=/etc/oauth/client/secret'
+            - '--scope=user:info user:check-access'
             - >-
               --openshift-sar={"verb":"get","resource":"notebooks","resourceAPIGroup":"kubeflow.org","resourceName":"s3-browser","namespace":"$(NAMESPACE)"}
             - >-
@@ -574,6 +587,25 @@ spec:
             defaultMode: 420
         - name: ca-bundles
           emptyDir: {}
+        - configMap:
+            items:
+              - key: ca-bundle.crt
+                path: ca-bundle.crt
+            name: workbench-trusted-ca-bundle
+            optional: true
+          name: trusted-ca
+        - configMap:
+            name: pipeline-runtime-images
+            optional: true
+          name: runtime-images
+        - name: elyra-dsp-details
+          secret:
+            optional: true
+            secretName: ds-pipeline-config
+        - name: oauth-client
+          secret:
+            defaultMode: 420
+            secretName: s3-browser-oauth-client
 ---
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
